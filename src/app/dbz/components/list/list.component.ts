@@ -4,21 +4,22 @@ import { Character } from '../../interfaces/characters.interface';
 @Component({
   selector: 'app-dbz-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.css']
+  styleUrls: ['./list.component.css'],
 })
 export class ListComponent {
   @Input()
-  public characterList: Character[] = [{
-    name: 'Trunk',
-    power: 10
-  }]
+  public characterList: Character[] = [
+    {
+      name: 'Trunk',
+      power: 10,
+    },
+  ];
 
   @Output()
-  public onDelete: EventEmitter <number> = new EventEmitter()
+  public onDelete: EventEmitter<string> = new EventEmitter();
 
-  onDeleteCharacter(index:number):void {
-    //TODO: Emitir el ID del personaje
-    console.log(index)
-    this.onDelete.emit(index)
+  onDeleteCharacter(id?: string): void {
+    if (!id) return;
+    this.onDelete.emit(id);
   }
 }
